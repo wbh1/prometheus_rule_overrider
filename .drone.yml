@@ -1,5 +1,23 @@
 ---
 kind: pipeline
+name: tests
+type: docker
+
+steps:
+  - name: Generate overrides file
+    image: python:3.8-alpine
+    commands:
+      - pip3 install 'pipenv==2018.11.26'
+      - pipenv install --system
+      - python3 generate.py testdata 
+  
+  - name: Validate overrides file
+    image: prom/prometheus:v2.16.0
+    commands:
+      - promtool check rules overrides.rules
+
+---
+kind: pipeline
 name: build
 type: docker
 
@@ -34,3 +52,8 @@ steps:
     when:
       event:
         - tag
+      branch:
+        - master
+
+depends_on:
+  - tests
