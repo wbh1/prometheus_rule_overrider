@@ -11,5 +11,4 @@ RUN apk update && \
     pip3 uninstall --yes pipenv && \
     apk del python3-dev
 
-
-ENTRYPOINT python3 /vetoer/generate.py
+ENTRYPOINT ["/usr/local/bin/python3", "/vetoer/generate.py"]
