@@ -1,0 +1,36 @@
+---
+kind: pipeline
+name: build
+type: docker
+
+steps:  
+  - name: build docker image (latest)
+    image: plugins/docker
+    settings:
+      username: 
+        from_secret: docker_user
+      password:
+        from_secret: docker_pw
+      repo: wbh1/prom_rule_overrider
+      tags:
+        - latest
+    when:
+      branch:
+        - master
+      event:
+        - push
+
+  - name: build docker image (tagged)
+    image: plugins/docker
+    settings:
+      username: 
+        from_secret: docker_user
+      password:
+        from_secret: docker_pw
+      repo: wbh1/prom_rule_overrider
+      tags:
+        - latest
+        - ${DRONE_TAG}
+    when:
+      event:
+        - tag
