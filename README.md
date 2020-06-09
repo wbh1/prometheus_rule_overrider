@@ -1,7 +1,7 @@
 # Prometheus Recording Rule Generator
 A project to simplify generating recording rules that can be used to filter in alerting rules.
 
-[![Build Status](https://cloud.drone.io/api/badges/wbh1/prometheus_rule_overrider/status.svg)](https://cloud.drone.io/wbh1/prometheus_rule_overrider)
+[![Build Status](https://cloud.drone.io/api/badges/wbh1/prometheus_rule_overrider/status.svg)](https://cloud.drone.io/wbh1/prometheus_rule_overrider) ![Docker Pulls](https://img.shields.io/docker/pulls/wbh1/prom_rule_overrider)
 
 ## Use Case
 This was born out of a need to apply "Global" alerts to *almost* all scrape targets, but exclude a few for various reasons (e.g. don't alert for disk usage on a drive solely dedicated to pagefile usage).
